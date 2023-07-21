@@ -1,5 +1,9 @@
 const ipUrl = 'https://api.ipify.org?format=json';
-const apiUrl = 'https://porkbun.com/api/json/v3/dns/edit/DOMAIN/ID';
+const secretApiKey = '';
+const apiKey = '';
+const domain = ''
+const domainUrl = 'https://porkbun.com/api/json/v3/dns/retrieve/' + domain;
+const apiUrl = 'https://porkbun.com/api/json/v3/dns/edit/' + domain + '/';
 let externalIp = '';
 
 function runFetch() {
@@ -13,31 +17,49 @@ function runFetch() {
                     "Content-Type": 'application/json;charset=UTF-8',
                 },
                 body: JSON.stringify({
-                    secretapikey: 'SECRET_API_KEY',
-                    apikey: 'API_KEY',
-                    name: 'www',
-                    type: 'A',
-                    content: data.ip
+                    secretapikey: secretApiKey,
+                    apikey: apiKey,
                 }),
             };
 
             if (data && externalIp !== data.ip) {
                 externalIp = data.ip;
-                return fetch(apiUrl, options);
+                console.log(data.ip)
+                return fetch(domainUrl, options);
             } else {
                 throw new Error('Message: IP has not changed');
             }
         })
-        .then((response) => {
-            // Additional error handling for response
-            if (!response || !response.json) {
-                throw new Error('Error: Invalid response or not a JSON object');
-            }
-            return response.json();
+        .then((response) => response.json())
+        .then((data) => {
+            let records = data.records;
+
+            records.forEach(function (record) {
+
+                if (record.type === 'A') {
+                    const options = {
+                        method: 'POST',
+                        headers: {
+                            Accept: 'application/json',
+                            "Content-Type": 'application/json;charset=UTF-8',
+                        },
+                        body: JSON.stringify({
+                            secretapikey: secretApiKey,
+                            apikey: apiKey,
+                            name: record.name.substring(0, 3) === 'www' ? 'www' : '',
+                            type: record.type,
+                            content: externalIp
+                        }),
+                    };
+                    return fetch(apiUrl + record.id, options);
+                }
+            });
+
         })
+        .then((response) => response.json())
         .then((data) => {
 
-            if (data.status == 'ERROR') {
+            if (data.status === 'ERROR') {
                 clearInterval(process);
                 runFetch();
             } else {
@@ -50,4 +72,4 @@ function runFetch() {
         });
 }
 
-const process = setInterval(runFetch, 3600000);
+const process = setInterval(runFetch, 5000);
