@@ -1,5 +1,5 @@
 const ipUrl = 'https://api.ipify.org?format=json';
-const apiUrl = 'https://porkbun.com/api/json/v3/dns/edit/squls.art/ID';
+const apiUrl = 'https://porkbun.com/api/json/v3/dns/edit/DOMAIN/ID';
 let externalIp = '';
 let failCount = 0;
 
@@ -44,8 +44,7 @@ function runFetch() {
                 }
             }
         })
-        .catch((error) => {
-        });
+        .catch((error) => {});
 }
 
 const process = setInterval(runFetch, 5000);
