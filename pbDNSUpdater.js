@@ -50,4 +50,4 @@ function runFetch() {
         });
 }
 
-const process = setInterval(runFetch, 3600000 );
+const process = setInterval(runFetch, 3600000);
