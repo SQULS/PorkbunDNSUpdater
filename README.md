@@ -11,4 +11,4 @@ The Porkbun API documentation can be found [here](https://porkbun.com/api/json/v
 Run ```npm install``` in order to install *dotenv*.
 
 Copy ```.env.example``` to ```.env``` and populate with your Porkbun API key and secret key.
-In the third environment variable called ```DOMAINS``` add a comma separated list of the domains you want to update.
+In the third environment variable called ```DOMAIN``` add a comma separated list of the domains you want to update.
