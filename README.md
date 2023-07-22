@@ -11,5 +11,5 @@ The Porkbun API documentation can be found [here](https://porkbun.com/api/json/v
 ## To Do
 
 * ~~Get list of records to process from API~~
-* Use environment variables
+* ~~Use environment variables~~
 * Multiple domains

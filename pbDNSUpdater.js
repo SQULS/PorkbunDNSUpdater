@@ -1,7 +1,9 @@
+require('dotenv').config();
+
 const ipUrl = 'https://api.ipify.org?format=json';
-const secretApiKey = '';
-const apiKey = '';
-const domain = ''
+const secretApiKey = process.env.SECRETKEY;
+const apiKey = process.env.APIKEY;
+const domain = process.env.DOMAIN;
 const domainUrl = 'https://porkbun.com/api/json/v3/dns/retrieve/' + domain;
 const apiUrl = 'https://porkbun.com/api/json/v3/dns/edit/' + domain + '/';
 let externalIp = '';
@@ -61,7 +63,7 @@ function runFetch() {
         .then((dataArray) => {
             dataArray.forEach((data) => {
                 if (data.status === 'ERROR') {
-                    clearInterval(process);
+                    clearInterval(updateProcess);
                     runFetch();
                 } else {
                     console.log('Message: ' + data.status);
@@ -73,4 +75,4 @@ function runFetch() {
         });
 }
 
-const process = setInterval(runFetch, 3600000);
+const updateProcess = setInterval(runFetch, 3600000);
