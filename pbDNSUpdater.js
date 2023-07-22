@@ -1,5 +1,4 @@
 require('dotenv').config();
-const fs = require('fs')
 
 const ipUrl = 'https://api.ipify.org?format=json';
 const secretApiKey = process.env.SECRETKEY;
