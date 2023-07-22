@@ -3,7 +3,7 @@ require('dotenv').config();
 const ipUrl = 'https://api.ipify.org?format=json';
 const secretApiKey = process.env.SECRETKEY;
 const apiKey = process.env.APIKEY;
-const domainsString = process.env.DOMAIN;
+const domainsString = process.env.DOMAINS;
 const domains = domainsString.split(',');
 const domainBaseUrl = 'https://porkbun.com/api/json/v3/dns/retrieve/';
 const apiBaseUrl = 'https://porkbun.com/api/json/v3/dns/edit/';
@@ -85,4 +85,4 @@ function runFetch() {
         });
 }
 
-const updateProcess = setInterval(runFetch, 5000);
+const updateProcess = setInterval(runFetch, 3600000);
