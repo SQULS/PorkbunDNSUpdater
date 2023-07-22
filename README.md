@@ -8,8 +8,7 @@ In order to utilise the Fetch() API that this service uses you will need Node.js
 
 The Porkbun API documentation can be found [here](https://porkbun.com/api/json/v3/documentation).
 
-## To Do
+Run ```npm install``` in order to install *dotenv*.
 
-* ~~Get list of records to process from API~~
-* ~~Use environment variables~~
-* Multiple domains
+Copy ```.env.example``` to ```.env``` and populate with your Porkbun API key and secret key.
+In the third environment variable called ```DOMAINS``` add a comma separated list of the domains you want to update.
