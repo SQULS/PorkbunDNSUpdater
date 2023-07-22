@@ -1,7 +1,7 @@
 const ipUrl = 'https://api.ipify.org?format=json';
-const secretApiKey = 'sk1_2e5442bad6fd755f59195b67a7e05b91022cea20de36dfffdf08a906f217fffb';
-const apiKey = 'pk1_d478b807d0bb32dc03a98716608274ea0c466c838cf05e9b0ff49b8ebf54ddb6';
-const domain = 'squls.art'
+const secretApiKey = '';
+const apiKey = '';
+const domain = ''
 const domainUrl = 'https://porkbun.com/api/json/v3/dns/retrieve/' + domain;
 const apiUrl = 'https://porkbun.com/api/json/v3/dns/edit/' + domain + '/';
 let externalIp = '';
@@ -24,7 +24,7 @@ function runFetch() {
 
             if (data && externalIp !== data.ip) {
                 externalIp = data.ip;
-                console.log(data.ip)
+                console.log('New IP: ' + data.ip);
                 return fetch(domainUrl, options);
             } else {
                 throw new Error('Message: IP has not changed');
@@ -73,4 +73,4 @@ function runFetch() {
         });
 }
 
-const process = setInterval(runFetch, 5000);
+const process = setInterval(runFetch, 3600000);
