@@ -1,0 +1,14 @@
+{
+  "name": "porkbundnsupdater",
+  "version": "1.0.0",
+  "description": "Service that checks current external IP and updates DNS records with Porkbun accordingly.",
+  "main": "pbDNSUpdater.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "UNLICENSE",
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
