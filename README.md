@@ -24,7 +24,7 @@ Install ```node-fetch``` at version 2.
 
 ```npm install node-fetch@2```
 
-Import it into the _pbDNSUpdater.js_ by adding the following line to the top of the file:
+Import it into _pbDNSUpdater.js_ by adding the following line to the top of the file:
 
 ```const fetch = require('node-fetch');```
 
