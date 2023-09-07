@@ -16,3 +16,15 @@ In the third environment variable called ```DOMAINS``` add a comma separated lis
 Run ```node pbDNSUpdater.js```
 
 You may want to use a NPM module such as *PM2* or *Forever* to run this service perpetually.
+
+### Node Versions < 19
+This is script will work with some modifications.
+Install ```node-fetch``` at version 2.
+
+```npm install node-fetch@2```
+
+And import it into the _pbDNSUpdater.js_ by adding the following line to the top of the file:
+
+```const fetch = require('node-fetch');```
+
+The service will not resolve to using the library.
